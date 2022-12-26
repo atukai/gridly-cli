@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+
+use Gridly\Command\GridlyCommand;
+use Gridly\Paginator\Laminas\LaminasPaginatorFactory;
+use Symfony\Component\Console\Application;
+
+include '../vendor/autoload.php';
+
+// COMMANDS
+$gridlyCommand = new GridlyCommand(new LaminasPaginatorFactory());
+
+// APPLICATION
+$application = new Application('Gridly CLI', '0.0.1');
+$application->add($gridlyCommand);
+$application->setDefaultCommand($gridlyCommand->getName(), true);
+$application->run();
